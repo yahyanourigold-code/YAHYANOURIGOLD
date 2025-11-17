@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yahyanourigold</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #1b1b1b;
+    color: #ffd700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  #story {
+    background-color: #1b1b1b;
+    border: 2px solid #ffd700;
+    width: 400px;
+    padding: 20px;
+    position: relative;
+  }
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  table td {
+    border: 1px solid #ffd700;
+    padding: 5px;
+    text-align: center;
+  }
+  #datetime {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+  }
+  button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #ffd700;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h1>yahyanourigold</h1>
+
+<div id="story">
+  <table id="rates">
+    <tr><td>دلار</td><td id="usd">42,500</td></tr>
+    <tr><td>یورو</td><td id="eur">46,200</td></tr>
+    <tr><td>انس</td><td id="ounce">1,850</td></tr>
+    <tr><td>هر مثقال طلا</td><td id="mesghal">12,700,000</td></tr>
+    <tr><td>خرید هر گرم طلا</td><td id="buy18">3,000,000</td></tr>
+    <tr><td>فروش هر گرم طلا</td><td id="sell18">3,100,000</td></tr>
+    <tr><td>مظنه</td><td id="mazane">2,950,000</td></tr>
+    <tr><td>سکه قدیم</td><td id="oldcoin">13,200,000</td></tr>
+    <tr><td>سکه جدید</td><td id="newcoin">13,500,000</td></tr>
+    <tr><td>نیم سکه</td><td id="halfcoin">6,900,000</td></tr>
+    <tr><td>ربع سکه</td><td id="quartercoin">3,700,000</td></tr>
+    <tr><td>سکه ۱ گرمی</td><td id="onegram">1,950,000</td></tr>
+  </table>
+  <div id="datetime"></div>
+</div>
+
+<button onclick="updateDateTime()">ساخت تصویر استوری</button>
+
+<script>
+function updateDateTime() {
+  const now = new Date();
+  document.getElementById('datetime').innerText = now.toLocaleString('fa-IR');
+}
+window.onload = updateDateTime;
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+function generateStory() {
+  html2canvas(document.getElementById('story')).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "story.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+</script>
+
+</body>
+</html>
