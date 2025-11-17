@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طلا و جواهری یحیی نوری</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fdfcf5; /* سفید استخوانی */
+    color: #000000; /* متن مشکی کلاسیک */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  /* واترمارک */
+  #watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 60px;
+    color: rgba(0,0,0,0.05); /* خیلی کمرنگ */
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 0;
+  }
+
+  h1 {
+    color: red;
+    font-size: 28px;
+    z-index: 1;
+  }
+
+  #story {
+    background-color: #fdfcf5;
+    border: 2px solid #ffd700;
+    width: 400px;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  #subtitle {
+    color: red;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    z-index: 1;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+
+  table td {
+    border: 1px solid #000000;
+    padding: 5px;
+    text-align: center;
+  }
+
+  #datetime {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #000000;
+  }
+
+  #address {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #000000;
+    text-align: center;
+    z-index: 1;
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #ffd700;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<div id="watermark">YahyaNouriGold</div>
+
+<h1>طلا و جواهری یحیی نوری</h1>
+<div id="subtitle">طلا و جواهری یحیی نوری</div>
+
+<div id="story">
+  <table id="rates">
+    <tr><td>هر مثقال طلا</td><td id="mesghal">12,700,000</td></tr>
+    <tr><td>خرید هر گرم طلا</td><td id="buy18">3,000,000</td></tr>
+    <tr><td>فروش هر گرم طلا</td><td id="sell18">3,100,000</td></tr>
+    <tr><td>مظنه</td><td id="mazane">2,950,000</td></tr>
+    <tr><td>سکه قدیم</td><td id="oldcoin">13,200,000</td></tr>
+    <tr><td>سکه جدید</td><td id="newcoin">13,500,000</td></tr>
+    <tr><td>نیم سکه</td><td id="halfcoin">6,900,000</td></tr>
+    <tr><td>ربع سکه</td><td id="quartercoin">3,700,000</td></tr>
+    <tr><td>سکه ۱ گرمی</td><td id="onegram">1,950,000</td></tr>
+    <tr><td>دلار</td><td id="usd">42,500</td></tr>
+    <tr><td>یورو</td><td id="eur">46,200</td></tr>
+    <tr><td>انس</td><td id="ounce">1,850</td></tr>
+  </table>
+  <div id="datetime"></div>
+</div>
+
+<div id="address">راسته بازار، مابین سرای حاج احمد و راسته بازار</div>
+
+<button id="btnStory">ساخت تصویر استوری</button>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+  function updateDateTime() {
+    const now = new Date();
+    document.getElementById('datetime').innerText = now.toLocaleString('fa-IR');
+  }
+  window.onload = updateDateTime;
+
+  document.getElementById('btnStory').addEventListener('click', () => {
+    const story = document.getElementById('story');
+    html2canvas(story, {scale: 2, useCORS: true}).then(canvas => {
+      canvas.toBlob(function(blob) {
+        const link = document.createElement("a");
+        link.download = "story.png";
+        link.href = URL.createObjectURL(blob);
+        link.click();
+      }, "image/png");
+    });
+  });
+</script>
+
+</body>
+</html>
